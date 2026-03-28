@@ -33,6 +33,9 @@ func _ready() -> void:
 	observe_button.pressed.connect(_on_observe_pressed)
 	encyclopedia_button.pressed.connect(_on_encyclopedia_pressed)
 
+	# DIVE ボタンをゴールドアクセントで目立たせる
+	_style_dive_button()
+
 	_update_ui()
 	_update_zone_display()
 
@@ -84,13 +87,59 @@ func _update_zone_display() -> void:
 		if zone == null:
 			continue
 
-		# 背景スタイルをシンプルに設定
+		# NatGeo風の洗練された深度帯スタイル
 		var style := StyleBoxFlat.new()
 		if unlocked:
-			style.bg_color = zone.color
+			# 元の色をベースに半透明で深海感を出す
+			style.bg_color = Color(zone.color, 0.6)
+			style.border_width_left = 1
+			style.border_width_right = 1
+			style.border_width_top = 1
+			style.border_width_bottom = 1
+			style.border_color = Color("#c8a84e30")
 		else:
-			style.bg_color = Color(0.2, 0.2, 0.2, 0.5)
+			style.bg_color = Color(0.1, 0.1, 0.12, 0.5)
+			style.border_width_left = 1
+			style.border_width_right = 1
+			style.border_width_top = 1
+			style.border_width_bottom = 1
+			style.border_color = Color("#40404030")
+		style.corner_radius_top_left = 2
+		style.corner_radius_top_right = 2
+		style.corner_radius_bottom_left = 2
+		style.corner_radius_bottom_right = 2
 		panel.add_theme_stylebox_override("panel", style)
+
+
+func _style_dive_button() -> void:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color("#c8a84e20")
+	style.border_width_left = 1
+	style.border_width_right = 1
+	style.border_width_top = 1
+	style.border_width_bottom = 1
+	style.border_color = Color("#c8a84e")
+	style.corner_radius_top_left = 2
+	style.corner_radius_top_right = 2
+	style.corner_radius_bottom_left = 2
+	style.corner_radius_bottom_right = 2
+	style.content_margin_left = 20.0
+	style.content_margin_right = 20.0
+	style.content_margin_top = 10.0
+	style.content_margin_bottom = 10.0
+	dive_button.add_theme_stylebox_override("normal", style)
+
+	var hover := style.duplicate()
+	hover.bg_color = Color("#c8a84e40")
+	dive_button.add_theme_stylebox_override("hover", hover)
+
+	var pressed := style.duplicate()
+	pressed.bg_color = Color("#c8a84e60")
+	dive_button.add_theme_stylebox_override("pressed", pressed)
+
+	dive_button.add_theme_color_override("font_color", Color("#c8a84e"))
+	dive_button.add_theme_color_override("font_hover_color", Color("#e8e4dc"))
+	dive_button.add_theme_font_size_override("font_size", 20)
 
 
 func _on_dive_pressed() -> void:

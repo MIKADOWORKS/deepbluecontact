@@ -66,17 +66,28 @@ func _show_zone(index: int) -> void:
 			# クリックで詳細表示
 			card.gui_input.connect(_on_card_input.bind(sp))
 		else:
-			# 未発見: プレースホルダー
+			# 未発見: プレースホルダー（エレガントな未発見表示）
 			var placeholder := PanelContainer.new()
 			placeholder.custom_minimum_size = Vector2(280, 90)
 			var label := Label.new()
-			label.text = "???"
+			label.text = "?"
 			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+			label.add_theme_color_override("font_color", Color("#e8e4dc30"))
+			label.add_theme_font_size_override("font_size", 24)
 			placeholder.add_child(label)
 
 			var style := StyleBoxFlat.new()
-			style.bg_color = Color(0.2, 0.2, 0.2, 0.5)
+			style.bg_color = Color(0.06, 0.08, 0.12, 0.5)
+			style.border_width_left = 1
+			style.border_width_right = 1
+			style.border_width_top = 1
+			style.border_width_bottom = 1
+			style.border_color = Color("#c8a84e10")
+			style.corner_radius_top_left = 2
+			style.corner_radius_top_right = 2
+			style.corner_radius_bottom_left = 2
+			style.corner_radius_bottom_right = 2
 			placeholder.add_theme_stylebox_override("panel", style)
 
 			grid.add_child(placeholder)
@@ -97,7 +108,7 @@ func _on_card_input(event: InputEvent, species: SpeciesData) -> void:
 func _show_detail(species: SpeciesData) -> void:
 	detail_panel.visible = true
 	detail_name.text = species.name_jp
-	detail_photo.color = Color(0.2, 0.3, 0.5)
+	detail_photo.color = Color(0.1, 0.15, 0.25)
 
 	var max_size: float = GameManager.player_data.max_sizes.get(species.id, 0.0)
 	detail_size.text = "最大記録: %.1f cm" % max_size

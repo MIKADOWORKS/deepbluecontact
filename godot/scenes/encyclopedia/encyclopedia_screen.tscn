@@ -16,6 +16,8 @@ layout_mode = 1
 anchor_right = 1.0
 offset_top = 10.0
 offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.784, 0.659, 0.306, 1)
+theme_override_font_sizes/font_size = 24
 text = "図鑑"
 horizontal_alignment = 1
 
@@ -68,20 +70,25 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="DetailPanel/VBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.784, 0.659, 0.306, 1)
+theme_override_font_sizes/font_size = 20
 text = "生物名"
 horizontal_alignment = 1
 
 [node name="PhotoRect" type="ColorRect" parent="DetailPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 200)
-color = Color(0.2, 0.3, 0.5, 1)
+color = Color(0.1, 0.15, 0.25, 1)
 
 [node name="SizeRecord" type="Label" parent="DetailPanel/VBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.894, 0.863, 0.7)
 text = "最大記録: 0.0 cm"
 
 [node name="TriviaLabel" type="Label" parent="DetailPanel/VBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.894, 0.863, 0.85)
+theme_override_font_sizes/font_size = 14
 text = ""
 autowrap_mode = 2
 

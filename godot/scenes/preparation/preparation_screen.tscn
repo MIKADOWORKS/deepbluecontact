@@ -16,6 +16,8 @@ layout_mode = 1
 anchor_right = 1.0
 offset_top = 10.0
 offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.784, 0.659, 0.306, 1)
+theme_override_font_sizes/font_size = 24
 text = "探査準備"
 horizontal_alignment = 1
 
@@ -24,6 +26,8 @@ layout_mode = 1
 anchor_right = 1.0
 offset_top = 45.0
 offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.784, 0.659, 0.306, 0.8)
+theme_override_font_sizes/font_size = 14
 text = "Step 1/3: 深度選択"
 horizontal_alignment = 1
 

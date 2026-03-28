@@ -100,6 +100,10 @@ func get_remaining_sec() -> float:
 	return maxf(_total_sec - _elapsed_sec, 0.0)
 
 
+func get_zone_id() -> String:
+	return _zone_id
+
+
 func get_result() -> ExpeditionResult:
 	return _result
 

@@ -21,12 +21,55 @@ const EQUIPMENT_CATEGORIES: Array = [
 	{"category": EquipmentData.Category.PROPULSION, "name": "推進装置"},
 ]
 
+const EQUIPMENT_ICONS: Dictionary = {
+	"searchlight_1": "res://assets/equipment/searchlight_1.png",
+	"searchlight_2": "res://assets/equipment/searchlight_2.png",
+	"sensor_1": "res://assets/equipment/sensor_1.png",
+	"sensor_2": "res://assets/equipment/sensor_2.png",
+	"camera_1": "res://assets/equipment/camera_1.png",
+	"camera_2": "res://assets/equipment/camera_2.png",
+	"propulsion_1": "res://assets/equipment/propulsion_1.png",
+	"propulsion_2": "res://assets/equipment/propulsion_2.png",
+}
+
 
 func _ready() -> void:
 	launch_button.pressed.connect(_on_launch_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 	launch_button.visible = false
+	_style_launch_button()
 	_show_step(_current_step)
+
+
+func _style_launch_button() -> void:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color("#c8a84e20")
+	style.border_width_left = 1
+	style.border_width_right = 1
+	style.border_width_top = 1
+	style.border_width_bottom = 1
+	style.border_color = Color("#c8a84e")
+	style.corner_radius_top_left = 2
+	style.corner_radius_top_right = 2
+	style.corner_radius_bottom_left = 2
+	style.corner_radius_bottom_right = 2
+	style.content_margin_left = 20.0
+	style.content_margin_right = 20.0
+	style.content_margin_top = 10.0
+	style.content_margin_bottom = 10.0
+	launch_button.add_theme_stylebox_override("normal", style)
+
+	var hover := style.duplicate()
+	hover.bg_color = Color("#c8a84e40")
+	launch_button.add_theme_stylebox_override("hover", hover)
+
+	var pressed := style.duplicate()
+	pressed.bg_color = Color("#c8a84e60")
+	launch_button.add_theme_stylebox_override("pressed", pressed)
+
+	launch_button.add_theme_color_override("font_color", Color("#c8a84e"))
+	launch_button.add_theme_color_override("font_hover_color", Color("#e8e4dc"))
+	launch_button.add_theme_font_size_override("font_size", 18)
 
 
 func _show_step(step: int) -> void:
@@ -136,6 +179,12 @@ func _build_equipment_selection() -> void:
 			var btn := Button.new()
 			btn.text = equip.name_jp
 			btn.toggle_mode = true
+			# アイコン設定
+			if equip.id in EQUIPMENT_ICONS:
+				var icon_tex: Texture2D = load(EQUIPMENT_ICONS[equip.id])
+				if icon_tex != null:
+					btn.icon = icon_tex
+					btn.expand_icon = true
 			var unlocked: bool = GameManager.is_equipment_unlocked(equip.id)
 			btn.disabled = not unlocked
 			if unlocked:

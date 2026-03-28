@@ -1,16 +1,16 @@
 {
   "character": {
-    "id": "a8ac5727-5b7d-4f70-8ce6-b9faca2a7593",
+    "id": "e80a244f-3587-45e9-93b4-3bf67a39dcd5",
     "name": "Nereid II",
-    "prompt": "large deep-sea submersible exploration vessel, angular boxy design, multiple viewing windows, robotic arm on front, reinforced hull with heavy-duty searchlights, advanced research submarine",
+    "prompt": "large advanced deep-sea submersible, angular armored hull, dark blue and grey, multiple viewport windows, robotic arm, reinforced lights array, heavy-duty research vessel, military-grade design",
     "size": {
-      "width": 48,
-      "height": 48
+      "width": 64,
+      "height": 64
     },
     "template_id": "mannequin",
     "directions": 4,
     "view": "side",
-    "created_at": "2026-03-28T11:20:02.58487+00:00"
+    "created_at": "2026-03-28T14:29:45.270373+00:00"
   },
   "frames": {
     "rotations": {
@@ -547,5 +547,5 @@
     "animations": {}
   },
   "export_version": "1.0",
-  "export_date": "2026-03-28T12:07:54.795811"
+  "export_date": "2026-03-28T20:11:52.654403"
 }

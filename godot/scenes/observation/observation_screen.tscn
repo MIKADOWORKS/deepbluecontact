@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1obsv0001"]
+[gd_scene load_steps=3 format=3 uid="uid://b1obsv0001"]
 
 [ext_resource type="Script" path="res://scenes/observation/observation_screen.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/submersibles/nereid_1/rotations/south.png" id="2"]
 
 [node name="ObservationScreen" type="Control"]
 layout_mode = 1
@@ -18,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1, 0.2, 0.4, 1)
+color = Color(0.055, 0.11, 0.22, 1)
 
 [node name="MarineSnow" type="CPUParticles2D" parent="."]
 position = Vector2(640, 0)
@@ -33,14 +34,15 @@ initial_velocity_max = 30.0
 emission_shape = 3
 emission_rect_extents = Vector2(640, 0)
 
-[node name="Submersible" type="Label" parent="."]
+[node name="Submersible" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 590.0
+offset_left = 568.0
 offset_top = 100.0
-offset_right = 690.0
-offset_bottom = 130.0
-text = "[探査艇]"
-horizontal_alignment = 1
+offset_right = 712.0
+offset_bottom = 244.0
+texture = ExtResource("2")
+stretch_mode = 2
+texture_filter = 0
 
 [node name="DepthGauge" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -54,6 +56,8 @@ offset_bottom = -10.0
 
 [node name="DepthLabel" type="Label" parent="DepthGauge"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.784, 0.659, 0.306, 1)
+theme_override_font_sizes/font_size = 14
 text = "現在深度: 0m"
 horizontal_alignment = 1
 
@@ -75,6 +79,7 @@ offset_bottom = -5.0
 [node name="TimerLabel" type="Label" parent="HUD"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.784, 0.659, 0.306, 0.9)
 text = "残り: 00:00"
 
 [node name="SpeedButton" type="Button" parent="HUD"]
@@ -93,4 +98,6 @@ anchor_top = 0.8
 anchor_right = 0.4
 anchor_bottom = 0.9
 offset_left = 10.0
+theme_override_colors/font_color = Color(0.91, 0.894, 0.863, 0.7)
+theme_override_font_sizes/font_size = 14
 text = "潜行開始..."

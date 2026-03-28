@@ -12,7 +12,7 @@ layout_mode = 2
 [node name="Photo" type="ColorRect" parent="HBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(80, 80)
-color = Color(0.2, 0.3, 0.5, 1)
+color = Color(0.1, 0.15, 0.25, 1)
 
 [node name="Info" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
