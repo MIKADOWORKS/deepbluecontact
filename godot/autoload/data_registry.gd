@@ -87,13 +87,13 @@ func get_equipment_by_category(category: EquipmentData.Category) -> Array[Equipm
 
 func _init_depth_zones() -> void:
 	_add_zone("mesopelagic", "Mesopelagic", "中深層",
-		200, 1000, 1200.0, 30.0, 0.0, Color("1a3a5c"))
+		200, 1000, 1200.0, 30.0, 0.0, Color("0070b8"))
 	_add_zone("bathypelagic", "Bathypelagic", "漸深層",
-		1000, 3000, 3600.0, 60.0, 0.5, Color("0f2847"))
+		1000, 3000, 3600.0, 60.0, 0.5, Color("004d8a"))
 	_add_zone("abyssopelagic", "Abyssopelagic", "深海層",
-		3000, 6000, 10800.0, 120.0, 0.5, Color("081a33"))
+		3000, 6000, 10800.0, 120.0, 0.5, Color("002d52"))
 	_add_zone("hadal", "Hadal", "超深海層",
-		6000, 11000, 21600.0, 300.0, 0.5, Color("040d1a"))
+		6000, 11000, 21600.0, 300.0, 0.5, Color("0a1428"))
 
 
 func _add_zone(id: String, name_en: String, name_jp: String,

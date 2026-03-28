@@ -9,9 +9,11 @@ extends Control
 @onready var back_button: Button = $HUD/BackButton
 @onready var event_log: Label = $EventLog
 
-# 深度に応じた色（明→暗） - NatGeo風の深海グラデーション
-var _color_surface: Color = Color(0.055, 0.11, 0.22)
-var _color_deep: Color = Color(0.015, 0.025, 0.055)
+# 深度に応じた色（明→暗） - 青の洞窟グラデーション
+var _color_surface: Color = Color(0.0, 0.502, 0.784)   # #0080c8 青の洞窟ブルー
+var _color_deep: Color = Color(0.024, 0.059, 0.133)     # #060f22 深海の暗さ
+
+var _next_ray_time: float = 0.0
 
 # 探査艇テクスチャマッピング
 const SUBMERSIBLE_TEXTURES: Dictionary = {
@@ -61,6 +63,7 @@ func _process(delta: float) -> void:
 		return
 
 	_try_spawn_object(delta)
+	_try_spawn_light_ray(delta)
 
 	var progress: float = ExpeditionManager.get_progress()
 
@@ -105,8 +108,38 @@ func _on_back_pressed() -> void:
 func _try_spawn_object(delta: float) -> void:
 	_next_object_time -= delta
 	if _next_object_time <= 0.0:
-		_next_object_time = randf_range(8.0, 20.0)
+		_next_object_time = randf_range(3.0, 8.0)
 		_spawn_background_object()
+
+
+func _try_spawn_light_ray(delta: float) -> void:
+	var progress: float = ExpeditionManager.get_progress()
+	# 浅いほど光線が多い（深くなるほど消える）
+	if progress > 0.6:
+		return
+	_next_ray_time -= delta
+	if _next_ray_time <= 0.0:
+		_next_ray_time = randf_range(2.0, 5.0)
+		_spawn_light_ray(progress)
+
+
+func _spawn_light_ray(progress: float) -> void:
+	var ray := ColorRect.new()
+	var ray_width: float = randf_range(20.0, 60.0)
+	var screen_h: float = get_viewport_rect().size.y
+	ray.size = Vector2(ray_width, screen_h * 1.2)
+	ray.position = Vector2(randf_range(0.0, 1280.0), -screen_h * 0.2)
+	# 深くなるほど薄く
+	var alpha: float = lerpf(0.18, 0.05, progress)
+	ray.color = Color(0.25, 0.78, 1.0, alpha)
+	ray.z_index = -2
+	# 微妙に傾ける
+	ray.rotation = randf_range(-0.15, 0.15)
+	add_child(ray)
+	# フェードアウトしながら消える
+	var tween: Tween = create_tween()
+	tween.tween_property(ray, "modulate:a", 0.0, randf_range(3.0, 6.0))
+	tween.tween_callback(ray.queue_free)
 
 
 func _spawn_background_object() -> void:
@@ -121,9 +154,9 @@ func _spawn_background_object() -> void:
 	var sprite := TextureRect.new()
 	sprite.texture = tex
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	sprite.custom_minimum_size = tex.get_size() * 2.5
-	sprite.size = tex.get_size() * 2.5
-	sprite.modulate.a = randf_range(0.5, 0.7)
+	sprite.custom_minimum_size = tex.get_size() * 4.0
+	sprite.size = tex.get_size() * 4.0
+	sprite.modulate.a = randf_range(0.6, 0.85)
 	sprite.z_index = -1
 	sprite.position = Vector2(1300, randf_range(200, 600))
 	add_child(sprite)
