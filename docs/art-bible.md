@@ -1,7 +1,7 @@
 # Deep Blue Contact - Art Bible
 
-> **Version**: 1.0
-> **Date**: 2026-03-28
+> **Version**: 1.1
+> **Date**: 2026-03-29
 > **Author**: Art Director
 > **Status**: Initial Draft
 
@@ -38,11 +38,14 @@ Deep Blue Contact のビジュアルは **National Geographic / BBC ドキュメ
 
 ### 2.1 Core Colors
 
+**参照画像**: 沖縄・青の洞窟ダイビング写真。発光するシアン〜ブルーの海中光を基準とする。
+
 | 名称 | Hex | 用途 |
 |------|-----|------|
-| **Primary (Deep Navy)** | `#0a1628` | 背景の基本色、Panel の bg_color |
-| **Secondary (Dark Navy)** | `#1a2a3f` | ボタン背景、ProgressBar 背景、補助パネル |
-| **Accent (Gold)** | `#c8a84e` | 強調要素、ボーダー、ProgressBar fill、重要テキスト |
+| **Primary (Ocean Blue)** | `#0a1e3a` | 背景の基本色、Panel の bg_color |
+| **Secondary (Deep Blue)** | `#0d2d55` | ボタン背景、ProgressBar 背景、補助パネル |
+| **Accent (Cyan)** | `#40c8f0` | ボーダー、hover 状態、光線エフェクト — 青の洞窟の光 |
+| **Accent (Gold)** | `#c8a84e` | DIVE ボタン、NEW バッジ、XP 表示、進行バー fill |
 | **Text Primary (Off-White)** | `#e8e4dc` | 本文テキスト、ボタンラベル |
 | **Text Disabled** | `#606060` | 無効化テキスト |
 | **Border Subtle** | `#404040` | ロック状態のボーダー |
@@ -51,8 +54,8 @@ Deep Blue Contact のビジュアルは **National Geographic / BBC ドキュメ
 
 | 状態 | bg_color | border_color | font_color |
 |------|----------|-------------|------------|
-| Normal | `#1a2a3f80` | `#c8a84e40` | `#e8e4dc` |
-| Hover | `#2a3a5080` | `#c8a84e80` | `#c8a84e` |
+| Normal | `#0d2d5580` | `#40c8f040` | `#e8e4dc` |
+| Hover | `#1a4a7a80` | `#40c8f080` | `#40c8f0` |
 | Pressed | `#c8a84e30` | `#c8a84e` | `#c8a84e` |
 | Disabled | `#0a0a0a40` | `#40404040` | `#606060` |
 
@@ -72,32 +75,34 @@ Font size: 20px (通常ボタンより大きい)
 
 | プロパティ | 値 |
 |-----------|-----|
-| bg_color | `#0a162880` (半透明) |
-| border_color | `#c8a84e20` (極薄ゴールド) |
+| bg_color | `#0a1e3a80` (半透明・青の洞窟ブルー) |
+| border_color | `#40c8f020` (極薄シアン) |
 | border_width | 1px (全辺) |
 | corner_radius | 2px (全角) |
 
 ### 2.5 Depth Zone Colors
 
-深度が深まるにつれ、色は暗く沈んでいく。DataRegistry で定義された正式値。
+青の洞窟パレットをベースに、深度が深まるにつれ暗く沈んでいく。DataRegistry で定義された正式値。
 
 | 海層 | ID | Hex | 深度 |
 |------|-----|-----|------|
-| 中深層 (Mesopelagic) | `mesopelagic` | `#1a3a5c` | 200-1,000m |
-| 漸深層 (Bathypelagic) | `bathypelagic` | `#0f2847` | 1,000-3,000m |
-| 深海層 (Abyssopelagic) | `abyssopelagic` | `#081a33` | 3,000-6,000m |
-| 超深海層 (Hadal) | `hadal` | `#040d1a` | 6,000m+ |
+| 中深層 (Mesopelagic) | `mesopelagic` | `#0070b8` | 200-1,000m |
+| 漸深層 (Bathypelagic) | `bathypelagic` | `#004d8a` | 1,000-3,000m |
+| 深海層 (Abyssopelagic) | `abyssopelagic` | `#002d52` | 3,000-6,000m |
+| 超深海層 (Hadal) | `hadal` | `#0a1428` | 6,000m+ |
 
-メイン画面の OceanPanel では、各ゾーンパネルにこの色をアルファ 0.6 で適用し、ゴールドボーダー `#c8a84e30` を付与する（アンロック時）。ロック状態は `rgba(0.1, 0.1, 0.12, 0.5)` + ボーダー `#40404030`。
+メイン画面の OceanPanel では、各ゾーンパネルにこの色をアルファ 0.6 で適用し、シアンボーダー `#40c8f030` を付与する（アンロック時）。ロック状態は `rgba(0.1, 0.1, 0.12, 0.5)` + ボーダー `#40404030`。
 
 ### 2.6 Observation Mode Gradient
 
-観察モードの背景は進行度（0.0 ~ 1.0）に応じて線形補間する。
+観察モードの背景は進行度（0.0 ~ 1.0）に応じて線形補間する。青の洞窟の鮮やかなブルーから深海の暗闇へ。
 
 | ポイント | RGB | 近似 Hex | 備考 |
 |----------|-----|----------|------|
-| Surface (progress=0.0) | `(0.055, 0.11, 0.22)` | `#0e1c38` | 暗い紺 |
-| Deep (progress=1.0) | `(0.015, 0.025, 0.055)` | `#04070e` | ほぼ漆黒 |
+| Surface (progress=0.0) | `(0.0, 0.502, 0.784)` | `#0080c8` | 青の洞窟ブルー |
+| Deep (progress=1.0) | `(0.024, 0.059, 0.133)` | `#060f22` | 深海の暗闇 |
+
+**光線エフェクト**: progress < 0.6 の浅い領域では、`#40c8f0` 系の半透明 ColorRect が斜めに差し込む演出を追加。深くなるほどフェードアウト。
 
 ---
 
@@ -244,13 +249,13 @@ Font size: 20px (通常ボタンより大きい)
 ### 5.1 Panel Design
 
 ```
-bg_color:     #0a162880  (Primary + 50% alpha)
-border_color: #c8a84e20  (Gold + 12.5% alpha)
+bg_color:     #0a1e3a80  (Primary Ocean Blue + 50% alpha)
+border_color: #40c8f020  (Cyan + 12.5% alpha)
 border_width: 1px
 corner_radius: 2px
 ```
 
-パネルは「暗い半透明 + 極薄ゴールド枠」で統一する。背景の深海が透けて見えることで没入感を維持しつつ、情報領域を区切る。
+パネルは「青の洞窟ブルーの半透明 + 極薄シアン枠」で統一する。背景の深海が透けて見えることで没入感を維持しつつ、情報領域を区切る。
 
 ### 5.2 Button Design
 
@@ -263,7 +268,7 @@ corner_radius: 2px
 ### 5.3 ProgressBar Design
 
 ```
-Background: #1a2a3f (Secondary)
+Background: #0d2d55 (Secondary Deep Blue)
 Fill:       #c8a84e (Gold)
 corner_radius: 1px
 ```
@@ -283,7 +288,7 @@ corner_radius: 1px
 
 | 要素 | 仕様 |
 |------|------|
-| 背景 | 暗い深海色 (`#0a1628`) のグラデーション |
+| 背景 | 青の洞窟ブルー (`#0a1e3a`) のグラデーション |
 | タイトル | ゴールド (`#c8a84e`)、Display サイズ (28-32px) |
 | サブタイトル | Off-White (`#e8e4dc`)、Body サイズ |
 | 母船 | 上部にシルエット配置（将来実装） |
@@ -297,7 +302,7 @@ corner_radius: 1px
 | 左側: OceanPanel | 4 つの深度帯パネルを縦に並べた海の断面図。各パネルは `zone.color` + alpha 0.6 |
 | 右側: InfoPanel | プレイヤーステータス、探査状態、ボタン群 |
 | DIVE ボタン | ゴールド枠のプライマリアクション。最も目立つ要素 |
-| 深度帯ボーダー | アンロック時: `#c8a84e30` / ロック時: `#40404030` |
+| 深度帯ボーダー | アンロック時: `#40c8f030` (シアン) / ロック時: `#40404030` |
 
 ### 6.3 Preparation Screen
 
@@ -383,11 +388,11 @@ corner_radius: 1px
 進行度に基づく背景色の連続的な変化が、潜行の臨場感を生む。
 
 ```
-Progress 0.0 (海面付近)  : rgb(0.055, 0.11, 0.22)  -- 暗い紺
+Progress 0.0 (海面付近)  : rgb(0.0, 0.502, 0.784)   #0080c8 -- 青の洞窟ブルー
 Progress 0.25            : 上記の中間補間
 Progress 0.5             : 上記の中間補間
 Progress 0.75            : 上記の中間補間
-Progress 1.0 (最深部)    : rgb(0.015, 0.025, 0.055) -- ほぼ漆黒
+Progress 1.0 (最深部)    : rgb(0.024, 0.059, 0.133)  #060f22 -- 深海の暗闇
 ```
 
 ### 8.2 Marine Snow Particles (Design Spec)
@@ -415,9 +420,10 @@ Progress 1.0 (最深部)    : rgb(0.015, 0.025, 0.055) -- ほぼ漆黒
 | 深海層 | Hydrothermal Vent, Rocky Cliff, Tubeworms |
 | 超深海層 | Whale Skeleton, Hydrothermal Vent, Tubeworms |
 
-- 出現間隔: 8-20 秒 (ランダム)
+- 出現間隔: 3-8 秒 (ランダム) ← 更新
 - 方向: 右端から左端へ水平スクロール (12-25 秒)
-- 透過度: 0.5-0.7 (背景要素として主張しすぎない)
+- 透過度: 0.6-0.85 (背景要素として主張しすぎない) ← 更新
+- 表示スケール: テクスチャサイズ x 4.0 ← 更新 (旧: x2.5)
 
 **深度帯別の演出方針**:
 - **中深層**: 浮遊する生物（クラゲ）中心。まだ光がある世界
@@ -495,19 +501,29 @@ godot/assets/
 ## Appendix: Color Reference (Quick Access)
 
 ```
-PRIMARY:      #0a1628
-SECONDARY:    #1a2a3f
-ACCENT/GOLD:  #c8a84e
-TEXT:          #e8e4dc
-TEXT_DIM:      #a0a0a0
-TEXT_DISABLED: #606060
-BORDER_LOCK:  #404040
+# ── ベースカラー (青の洞窟スタイル) ──────────────────────
+PRIMARY:       #0a1e3a   (Ocean Blue パネル背景)
+SECONDARY:     #0d2d55   (Deep Blue ボタン背景)
+ACCENT/CYAN:   #40c8f0   (青の洞窟の光 — ボーダー/ホバー)
+ACCENT/GOLD:   #c8a84e   (DIVE/XP/NEW バッジ — ゴールドは維持)
+TEXT:          #e8e4dc   (Off-White 本文)
+TEXT_DIM:      #a0a0a0   (補助テキスト)
+TEXT_DISABLED: #606060   (無効化)
+BORDER_LOCK:   #404040   (ロック状態)
 
-ZONE_MESO:    #1a3a5c
-ZONE_BATHY:   #0f2847
-ZONE_ABYSSO:  #081a33
-ZONE_HADAL:   #040d1a
+# ── 深度帯ゾーン ────────────────────────────────────────
+ZONE_MESO:    #0070b8   (中深層  200-1,000m)
+ZONE_BATHY:   #004d8a   (漸深層 1,000-3,000m)
+ZONE_ABYSSO:  #002d52   (深海層 3,000-6,000m)
+ZONE_HADAL:   #0a1428   (超深海層 6,000m+)
 
-OBS_SURFACE:  rgb(0.055, 0.11, 0.22)
-OBS_DEEP:     rgb(0.015, 0.025, 0.055)
+# ── 観察モードグラデーション ─────────────────────────────
+OBS_SURFACE:  #0080c8   rgb(0.0, 0.502, 0.784)   (青の洞窟ブルー)
+OBS_DEEP:     #060f22   rgb(0.024, 0.059, 0.133) (深海の暗闇)
+
+# ── メイン画面 OceanBackground ────────────────────────────
+OCEAN_BG:     #004f8c   (断面図背景)
+
+# ── 光線エフェクト ────────────────────────────────────────
+LIGHT_RAY:    #40c8f0   (alpha 0.05-0.18 でランダム / progress < 0.6 のみ)
 ```
