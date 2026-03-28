@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1card0001"]
+
+[ext_resource type="Script" path="res://scenes/components/species_card.gd" id="1"]
+
+[node name="SpeciesCard" type="PanelContainer"]
+custom_minimum_size = Vector2(280, 90)
+script = ExtResource("1")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Photo" type="ColorRect" parent="HBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 80)
+color = Color(0.2, 0.3, 0.5, 1)
+
+[node name="Info" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="HBox/Info"]
+layout_mode = 2
+text = "生物名"
+
+[node name="SizeLabel" type="Label" parent="HBox/Info"]
+layout_mode = 2
+text = "XX.X cm"
+
+[node name="BadgeLabel" type="Label" parent="HBox/Info"]
+layout_mode = 2
+text = "NEW!"

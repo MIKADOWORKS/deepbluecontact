@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1prep0001"]
+
+[ext_resource type="Script" path="res://scenes/preparation/preparation_screen.gd" id="1"]
+
+[node name="PreparationScreen" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 40.0
+text = "探査準備"
+horizontal_alignment = 1
+
+[node name="StepIndicator" type="Label" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_top = 45.0
+offset_bottom = 70.0
+text = "Step 1/3: 深度選択"
+horizontal_alignment = 1
+
+[node name="ContentContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.12
+anchor_right = 0.9
+anchor_bottom = 0.82
+
+[node name="LaunchButton" type="Button" parent="."]
+layout_mode = 1
+anchor_left = 0.3
+anchor_top = 0.85
+anchor_right = 0.7
+anchor_bottom = 0.93
+text = "出発！"
+visible = false
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchor_top = 0.94
+anchor_right = 0.2
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_bottom = -5.0
+text = "戻る"

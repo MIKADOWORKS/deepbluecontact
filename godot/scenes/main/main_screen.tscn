@@ -1,0 +1,175 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1main0001"]
+
+[ext_resource type="Script" path="res://scenes/main/main_screen.gd" id="1"]
+
+[node name="MainScreen" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="OceanPanel" type="Panel" parent="."]
+layout_mode = 1
+anchor_right = 0.625
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="OceanBackground" type="ColorRect" parent="OceanPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.1, 0.2, 1)
+
+[node name="MotherShip" type="Label" parent="OceanPanel"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 50.0
+text = "[母船]"
+horizontal_alignment = 1
+
+[node name="DepthZone1" type="Panel" parent="OceanPanel"]
+layout_mode = 1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.32
+offset_left = 10.0
+offset_right = -10.0
+
+[node name="ZoneLabel" type="Label" parent="OceanPanel/DepthZone1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "中深層 (200-1000m)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DepthZone2" type="Panel" parent="OceanPanel"]
+layout_mode = 1
+anchor_top = 0.34
+anchor_right = 1.0
+anchor_bottom = 0.56
+offset_left = 10.0
+offset_right = -10.0
+
+[node name="ZoneLabel" type="Label" parent="OceanPanel/DepthZone2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "漸深層 (1000-3000m)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DepthZone3" type="Panel" parent="OceanPanel"]
+layout_mode = 1
+anchor_top = 0.58
+anchor_right = 1.0
+anchor_bottom = 0.78
+offset_left = 10.0
+offset_right = -10.0
+
+[node name="ZoneLabel" type="Label" parent="OceanPanel/DepthZone3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "深海層 (3000-6000m)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DepthZone4" type="Panel" parent="OceanPanel"]
+layout_mode = 1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.98
+offset_left = 10.0
+offset_right = -10.0
+
+[node name="ZoneLabel" type="Label" parent="OceanPanel/DepthZone4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "超深海層 (6000m+)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoPanel" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.625
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="TitleLabel" type="Label" parent="InfoPanel"]
+layout_mode = 2
+text = "Deep Blue Contact"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="InfoPanel"]
+layout_mode = 2
+text = "Level: 1  XP: 0/100"
+horizontal_alignment = 1
+
+[node name="ExpeditionStatus" type="VBoxContainer" parent="InfoPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatusText" type="Label" parent="InfoPanel/ExpeditionStatus"]
+layout_mode = 2
+text = "待機中"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="InfoPanel/ExpeditionStatus"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="InfoPanel/ExpeditionStatus"]
+layout_mode = 2
+value = 0.0
+
+[node name="DiveButton" type="Button" parent="InfoPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+text = "DIVE"
+
+[node name="ObserveButton" type="Button" parent="InfoPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+visible = false
+text = "観察モード"
+
+[node name="EncyclopediaButton" type="Button" parent="InfoPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+text = "図鑑"
+
+[node name="DebugLabel" type="Label" parent="InfoPanel"]
+layout_mode = 2
+visible = false
+text = "[DEBUG MODE]"
+horizontal_alignment = 1

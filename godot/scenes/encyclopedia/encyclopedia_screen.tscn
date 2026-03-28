@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ency0001"]
+
+[ext_resource type="Script" path="res://scenes/encyclopedia/encyclopedia_screen.gd" id="1"]
+
+[node name="EncyclopediaScreen" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 40.0
+text = "図鑑"
+horizontal_alignment = 1
+
+[node name="TabBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 45.0
+offset_right = -10.0
+offset_bottom = 80.0
+
+[node name="Tab1" type="Button" parent="TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "中深層 (0/3)"
+
+[node name="Tab2" type="Button" parent="TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "漸深層 (0/3)"
+
+[node name="Tab3" type="Button" parent="TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "深海層 (0/2)"
+
+[node name="Tab4" type="Button" parent="TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "超深海層 (0/2)"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.02
+anchor_top = 0.12
+anchor_right = 0.6
+anchor_bottom = 0.92
+columns = 2
+
+[node name="DetailPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.62
+anchor_top = 0.12
+anchor_right = 0.98
+anchor_bottom = 0.92
+visible = false
+
+[node name="VBox" type="VBoxContainer" parent="DetailPanel"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="DetailPanel/VBox"]
+layout_mode = 2
+text = "生物名"
+horizontal_alignment = 1
+
+[node name="PhotoRect" type="ColorRect" parent="DetailPanel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 200)
+color = Color(0.2, 0.3, 0.5, 1)
+
+[node name="SizeRecord" type="Label" parent="DetailPanel/VBox"]
+layout_mode = 2
+text = "最大記録: 0.0 cm"
+
+[node name="TriviaLabel" type="Label" parent="DetailPanel/VBox"]
+layout_mode = 2
+text = ""
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="DetailPanel/VBox"]
+layout_mode = 2
+text = "閉じる"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchor_top = 0.94
+anchor_right = 0.15
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_bottom = -5.0
+text = "戻る"
