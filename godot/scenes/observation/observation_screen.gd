@@ -43,6 +43,10 @@ func _ready() -> void:
 	_update_speed_label()
 	event_log.text = "潜行開始..."
 
+	# 開幕から数体を画面上にプリスポーン（チラ見防止）
+	for i in range(3):
+		_spawn_background_object_at(randf_range(100.0, 1100.0))
+
 
 func _load_submersible_texture() -> void:
 	var sub_id: String = ExpeditionManager._submersible_id
@@ -143,6 +147,10 @@ func _spawn_light_ray(progress: float) -> void:
 
 
 func _spawn_background_object() -> void:
+	_spawn_background_object_at(1300.0)
+
+
+func _spawn_background_object_at(start_x: float) -> void:
 	var zone_id: String = ExpeditionManager.get_zone_id()
 	var objects: Array = DEPTH_OBJECTS.get(zone_id, [])
 	if objects.is_empty():
@@ -158,11 +166,15 @@ func _spawn_background_object() -> void:
 	sprite.size = tex.get_size() * 4.0
 	sprite.modulate.a = randf_range(0.6, 0.85)
 	sprite.z_index = -1
-	sprite.position = Vector2(1300, randf_range(200, 600))
+	var screen_h: float = get_viewport_rect().size.y
+	sprite.position = Vector2(start_x, randf_range(100.0, screen_h - 150.0))
 	add_child(sprite)
-	# 左へスクロールするTween
+	# 左へスクロール — 移動距離に応じた時間で一定速度を保つ
+	var travel: float = start_x + 300.0  # -300 まで移動
+	var speed: float = randf_range(80.0, 150.0)  # px/秒
+	var duration: float = travel / speed
 	var tween: Tween = create_tween()
-	tween.tween_property(sprite, "position:x", -300.0, randf_range(12.0, 25.0))
+	tween.tween_property(sprite, "position:x", -300.0, duration)
 	tween.tween_callback(sprite.queue_free)
 
 
