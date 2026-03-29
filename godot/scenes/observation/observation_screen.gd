@@ -43,7 +43,12 @@ func _ready() -> void:
 	_update_speed_label()
 	event_log.text = "潜行開始..."
 
-	# 開幕から数体を画面上にプリスポーン（チラ見防止）
+	# 1フレーム後にプリスポーン（_ready()時はviewport未確定のため）
+	call_deferred("_preseed_objects")
+
+
+func _preseed_objects() -> void:
+	# 開幕から画面内に3体配置（viewport確定後に実行）
 	for i in range(3):
 		_spawn_background_object_at(randf_range(100.0, 1100.0))
 
